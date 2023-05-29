@@ -30,6 +30,11 @@ public class ProductController {
         List<Product> products = productService.findAllProduct();
         return new ResponseEntity<>(products,HttpStatus.OK);
     }
+    @GetMapping("/{id}/find")
+    public ResponseEntity<Product> findProductById(@PathVariable Long id){
+        Product product = productService.findProductById(id);
+        return new ResponseEntity<>(product,HttpStatus.OK);
+    }
     @GetMapping("/{field}")
     public List<Product> findBySorting(@PathVariable("field") String fieldName){
         return productService.findProductBySorting(fieldName);

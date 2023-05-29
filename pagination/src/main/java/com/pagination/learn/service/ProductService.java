@@ -8,8 +8,10 @@ import java.util.List;
 public interface ProductService {
     Product createProduct(Product product);
     List<Product> findAllProduct();
+    Product findProductById(Long id);
     List<Product> findProductBySorting(String field);
     Page<Product> findProductPegination(int offset, int pageSize);
+
 
     /**
      *  we can all add field in parameter to find the product in pagination by sorting them

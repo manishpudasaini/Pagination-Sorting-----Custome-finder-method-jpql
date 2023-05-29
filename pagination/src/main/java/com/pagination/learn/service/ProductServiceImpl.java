@@ -1,5 +1,6 @@
 package com.pagination.learn.service;
 
+import com.pagination.learn.exception.ProductNotFoundexception;
 import com.pagination.learn.model.Product;
 import com.pagination.learn.repo.ProductRepo;
 import org.springframework.data.domain.Page;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -25,6 +27,17 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Product> findAllProduct() {
         return productRepo.findAll();
+    }
+
+    @Override
+    public Product findProductById(Long id) {
+        Optional<Product> product =productRepo.findById(id);
+        if(product.isPresent()){
+            Product product1 = product.get();
+            return product1;
+        }else {
+            throw new ProductNotFoundexception("Product having this id "+id+" is not in the database!!!!");
+        }
     }
 
     @Override
