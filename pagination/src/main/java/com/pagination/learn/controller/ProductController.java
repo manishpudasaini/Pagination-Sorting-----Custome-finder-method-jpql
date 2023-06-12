@@ -5,7 +5,6 @@ import com.pagination.learn.service.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,5 +42,16 @@ public class ProductController {
     @GetMapping("/pagination/{offset}/{pageSize}")
     public Page<Product> findByPagination(@PathVariable int offset,@PathVariable int pageSize){
         return productService.findProductPegination(offset,pageSize);
+    }
+
+    //custome finder method
+    @GetMapping("/{name}/kid")
+    public ResponseEntity<List<Product>> productByName(@PathVariable("name") String name){
+        return new ResponseEntity<>(productService.findByname(name),HttpStatus.OK);
+    }
+
+    @GetMapping("/{name}/{city}")
+    public ResponseEntity<List<Product>> getByNameProduct(@PathVariable String name,@PathVariable String city){
+        return new ResponseEntity<>(productService.findByNameAndCity(name,city),HttpStatus.OK);
     }
 }

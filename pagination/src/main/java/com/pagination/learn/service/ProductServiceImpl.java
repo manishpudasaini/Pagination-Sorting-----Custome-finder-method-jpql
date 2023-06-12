@@ -50,4 +50,14 @@ public class ProductServiceImpl implements ProductService{
         Page<Product> productPage = productRepo.findAll(PageRequest.of(offset, pageSize));
         return productPage;
     }
+
+    @Override
+    public List<Product> findByname(String name) {
+        return productRepo.findByName(name);
+    }
+
+    @Override
+    public List<Product> findByNameAndCity(String name, String city) {
+        return productRepo.getproductByNameAndCity(name,city);
+    }
 }

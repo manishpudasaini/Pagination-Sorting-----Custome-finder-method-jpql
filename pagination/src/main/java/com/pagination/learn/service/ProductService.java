@@ -18,5 +18,10 @@ public interface ProductService {
      *   Page<Product> findProductPegination(int offset, int pageSize,String field);
      **/
 
+    //custome finder method
+    List<Product> findByname(String name);
+
+    //Query annotation
+    List<Product> findByNameAndCity(String name,String city);
 
 }
